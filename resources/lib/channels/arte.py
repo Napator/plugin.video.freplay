@@ -63,10 +63,7 @@ def list_shows(channel, folder):
                 show_titleTab = common.parseDOM(url[i], "video:show_title")
                 if len(show_titleTab) > 0:
                     title = fix_text(show_titleTab[0])
-                if globalvar.ADDON.getSetting('arteFull') == 'true':
-                    videoTag = common.parseDOM(url[i], "video:tag")[0]
-                else:
-                    videoTag = 'ARTE+7'
+                videoTag = common.parseDOM(url[i], "video:tag")[0]
                 if(typo_correction(fix_text(categoryTab[0])) == folder and
                         title not in d and
                         videoTag == 'ARTE+7'):
@@ -146,8 +143,7 @@ def list_videos(channel, show_title):
                 "Aired": date,
                 "Duration": duration,
                 "Year": date[:4]}
-            if not(globalvar.ADDON.getSetting('arteFull') == 'true' and
-                    videoTag != 'ARTE+7'):
+            if videoTag == 'ARTE+7':
                 videos.append([
                     channel,
                     video_id,
